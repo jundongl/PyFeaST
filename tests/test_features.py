@@ -1,5 +1,6 @@
 import pytest
-from skfeature.function import feature_ranking
+from sklearn.feature_selection import mutual_info_classif
+import numpy as np 
 
 def test_feature_ranking():
     # Mock data for testing
@@ -12,9 +13,10 @@ def test_feature_ranking():
     
     labels = [1, 0, 1, 0]  # Mock labels/targets
     
-    # Example test case
-    ranking = feature_ranking.mutual_info_score(data, labels)
-    assert isinstance(ranking, list)
+    # Calculate mutual information scores for each feature
+    ranking = mutual_info_classif(data, labels)
+    
+    assert isinstance(ranking, np.ndarray)
     assert len(ranking) == len(data[0])  # Assuming ranking returns a list of scores
     
     # Add more test cases as needed
